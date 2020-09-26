@@ -14,6 +14,7 @@ import axios from "axios";
  *
  */
 
+
 export const actions = {
     setAccount : ({commit}, {account}) => commit(SET_ACCOUNT, {account}),
     login : ({commit}, user) => {
