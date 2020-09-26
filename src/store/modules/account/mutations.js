@@ -1,6 +1,6 @@
 import { SET_ACCOUNT } from './mutation-types';
 
-export default {
+export const mutations = {
     /**
     *
     * @param { AccountState } state

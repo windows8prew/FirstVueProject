@@ -4,4 +4,7 @@
 * @param { AccountState } state
 * @return { string }
 */
-export const isLoggedIn = state => state.token
+const isLoggedIn = state => state.token
+export const getters = {
+    isLoggedIn
+}

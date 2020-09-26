@@ -33,3 +33,8 @@ export const login = ({commit}, user) => {
             })
     })
 }
+
+export const actions = {
+    setAccount,
+    login
+}
