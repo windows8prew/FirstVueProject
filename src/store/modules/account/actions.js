@@ -13,23 +13,25 @@ import axios from "axios";
  * @param { string } account.user.type
  *
  */
-export const setAccount = ({commit}, {account}) => commit(SET_ACCOUNT, {account});
 
-export const login = ({commit}, user) => {
-    return new Promise((resolve, reject) => {
-        commit('auth_request')
-        axios({url: 'http://localhost:8081/login', data: user, method: 'POST' })
-            .then(resp => {
-                const account = resp.data.account
-                localStorage.setItem('token', account.token)
-                axios.defaults.headers.common['Authorization'] = account.token
-                commit(SET_ACCOUNT, account)
-                resolve(resp)
-            })
-            .catch(err => {
-                commit('auth_error')
-                localStorage.removeItem('token')
-                reject(err)
-            })
-    })
-}
+export const actions = {
+    setAccount : ({commit}, {account}) => commit(SET_ACCOUNT, {account}),
+    login : ({commit}, user) => {
+        return new Promise((resolve, reject) => {
+            commit('auth_request');
+            axios({url: 'http://localhost:8081/login', data: user, method: 'POST' })
+                .then(resp => {
+                    const account = resp.data.account;
+                    localStorage.setItem('token', account.token);
+                    axios.defaults.headers.common['Authorization'] = account.token;
+                    commit(SET_ACCOUNT, account);
+                    resolve(resp)
+                })
+                .catch(err => {
+                    commit('auth_error');
+                    localStorage.removeItem('token');
+                    reject(err)
+                })
+        })
+    }
+};
